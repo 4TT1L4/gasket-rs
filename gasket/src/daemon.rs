@@ -3,7 +3,7 @@ use std::{
         atomic::{AtomicBool, Ordering},
         Arc,
     },
-    time::Duration,
+    time::Duration
 };
 
 use tracing::{info, warn};
@@ -80,7 +80,7 @@ impl Daemon {
                 break;
             }
             warn!("park_timeout(Duration::from_millis(1500)");
-            thread::park_timeout(Duration::from_millis(1500));
+            std::thread::park_timeout(Duration::from_millis(1500));
         }
 
         self.teardown();
