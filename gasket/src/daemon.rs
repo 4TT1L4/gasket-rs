@@ -72,8 +72,11 @@ impl Daemon {
     }
 
     pub fn block(self) {
-        while !self.should_stop() {
-            std::thread::sleep(Duration::from_millis(1500));
+        loop {
+            if self.should_stop() {
+                break;
+            }
+            thread::park_timeout(Duration::from_millis(1500));
         }
 
         self.teardown();
