@@ -72,10 +72,14 @@ impl Daemon {
     }
 
     pub fn block(self) {
+        warn!("Block!");
+
         loop {
+            warn!("Should stop? {}", self.should_stop());
             if self.should_stop() {
                 break;
             }
+            warn!("park_timeout(Duration::from_millis(1500)");
             thread::park_timeout(Duration::from_millis(1500));
         }
 
